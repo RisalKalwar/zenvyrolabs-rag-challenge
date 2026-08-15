@@ -1,0 +1,19 @@
+# Secrets - NEVER commit this, contains your API key
+.env
+
+# Vector database - regenerates automatically, gets huge after manga OCR
+backend/chroma_db/
+
+# Temporary uploaded files
+backend/temp/
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# The actual book PDFs - copyrighted, don't upload publicly
+*.pdf
+
+# OS/editor junk files (optional but common)
+.DS_Store
+.vscode/

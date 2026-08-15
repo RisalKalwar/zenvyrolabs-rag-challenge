@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zenvyrolabs - Interactive Study Tutor</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Highlight.js for code styling -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <!-- Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar for Document Upload -->
+        <aside class="sidebar">
+            <div class="logo-container">
+                <img src="assets/LOGO.png" alt="Zenvyrolabs Logo" class="logo">
+                <h2>ZENVYROLABS</h2>
+            </div>
+
+        <div class="mode-selector">
+            <h3><i class="fa-solid fa-layer-group"></i> Assistant Mode</h3>
+            <div class="mode-btn active" data-mode="coding" onclick="setMode('coding')">
+                <i class="fa-solid fa-code"></i> Coding Textbook
+            </div>
+            <div class="mode-btn" data-mode="novel" onclick="setMode('novel')">
+                <i class="fa-solid fa-book"></i> Novel
+            </div>
+            <div class="mode-btn" data-mode="manga" onclick="setMode('manga')">
+                <i class="fa-solid fa-image"></i> Manga / Comic
+            </div>
+        </div>
+
+        <div class="upload-section">
+            <h3><i class="fa-solid fa-book-open"></i> Knowledge Base</h3>
+            <p>Upload a PDF document to train the AI instantly.</p>
+                
+                <div class="file-upload-wrapper" id="drop-zone">
+                    <input type="file" id="pdf-upload" accept=".pdf" hidden>
+                    <label for="pdf-upload" class="upload-btn">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                        <span>Select PDF Document</span>
+                    </label>
+                </div>
+                
+                <div id="upload-status" class="status-msg hidden">
+                    <div class="loader"></div>
+                    <span>Processing document...</span>
+                </div>
+                
+                <div id="upload-success" class="success-msg hidden">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span id="success-text">Document embedded successfully!</span>
+                </div>
+            </div>
+
+            <div class="instructions">
+                <h4><i class="fa-solid fa-circle-info"></i> How it works</h4>
+                <ul>
+                    <li>1. Upload a massive PDF book.</li>
+                    <li>2. The system splits and embeds the text into ChromaDB.</li>
+                    <li>3. Ask questions and get cited answers instantly!</li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Chat Area -->
+        <main class="chat-area">
+            <header class="chat-header">
+                <div class="header-info">
+                    <h1>RAG Assistant</h1>
+                    <span class="status-badge"><span class="dot"></span> Online</span>
+                </div>
+            </header>
+
+            <div class="chat-box" id="chat-box">
+                <div class="message system-msg">
+                    <div class="avatar"><i class="fa-solid fa-robot"></i></div>
+                    <div class="msg-bubble">
+                        <p>Welcome! Please upload a PDF document on the left, and then ask me anything about it.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-area">
+                <div class="input-wrapper">
+                    <textarea id="chat-input" placeholder="Ask a question about the document..." rows="1"></textarea>
+                    <button id="send-btn" class="send-btn"><i class="fa-solid fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
